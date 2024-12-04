@@ -1,20 +1,16 @@
 # Usa una imagen base de Python
-FROM python:3.9
+FROM python:3.9-slim
 
-# Establece el directorio de trabajo dentro del contenedor
+# Establece el directorio de trabajo
 WORKDIR /app
 
 # Copia los archivos del proyecto al contenedor
-COPY . /app
-COPY requirements.txt /app/
-
-# Instala las dependencias
-RUN pip install --upgrade pip
+COPY . .
 RUN pip install -r requirements.txt
-RUN pip install flask
 
-# Expone el puerto que usará Flask
-EXPOSE 5050
 
-# Comando para ejecutar la aplicación Flask
+# Expone el puerto de la aplicación
+EXPOSE 5000
+
+# Comando para ejecutar la aplicación
 CMD ["python", "app.py"]
