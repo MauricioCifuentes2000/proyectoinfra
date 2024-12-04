@@ -16,14 +16,14 @@ jobs:
     - name: Log in to Azure Container Registry
       uses: azure/docker-login@v1
       with:
-        login-server: proyectoinfracontmau.azurecr.io
+        login-server: cntinf.azurecr.io
         username: ${{ secrets.AZURE_USERNAME }}
         password: ${{ secrets.AZURE_PASSWORD }}
 
     - name: Build and push Docker image
       run: |
-        docker build -t proyectoinfracontmau.azurecr.io/profinal:latest .
-        docker push proyectoinfracontmau.azurecr.io/profinal:latest
+        docker build -t cntinf.azurecr.io/hola:latest .
+        docker push cntinf.azurecr.io/hola:latest
 
     - name: Log in to Azure
       uses: azure/login@v1
@@ -33,6 +33,6 @@ jobs:
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
-        app-name: OrdInfra
-        images: proyectoinfracontmau.azurecr.io/profinal:latest
+        app-name: cntinf
+        images: cntinf.azurecr.io/hola:latest
 
